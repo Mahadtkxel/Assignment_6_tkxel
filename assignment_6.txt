@@ -1,0 +1,7 @@
+- Write a pipeline that checkout code from Multiple SCM
+- Set a Worker node/agent in the Jenkins
+- Install Git Plugins / SCM plugins / webhook notification /Email
+- Checkout code and pass it to sonar for scan
+- Clean code and Set it up on docker
+- Deploy that docker to a remote location
+- When CI/CD has been done send a Success / Failure Message

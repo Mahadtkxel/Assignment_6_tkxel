@@ -4,18 +4,20 @@ pipeline {
     agent any
     
     parameters {
-        string(name: "BRANCH_NAME", defaultValue: "master")
-        string(name: "GIT_URL", defaultValue: "https://github.com/Mahadtkxel/python-project-blueprint.git")
+        string(name: "BRANCH_NAME", defaultValue: "main")
+        string(name: "BITBUCKET_BRANCH_NAME", defaultValue: "master")
+        string(name: "GITHUB_URL", defaultValue: "https://github.com/Mahadtkxel/Assignment_6_tkxel.git")
+        string(name: "BITBUCKET_URL", defaultValue: "https://mahadkarim@bitbucket.org/mahad_tkxel/assignment_6_tkxel.git")
         string(name: "TOOL_NAME", defaultValue: "sonarqube")
-        string(name: "SONAR_PROJECT", defaultValue: "tkxelassignment1")
-        string(name: "IMAGE_TAG", defaultValue: "tkxelassignment_1")
+        string(name: "SONAR_PROJECT", defaultValue: "tkxelassignment6")
+        string(name: "IMAGE_TAG", defaultValue: "tkxelassignment_6")
         string(name: "DOCKERFILE", defaultValue: "dev.Dockerfile")
     }
     
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: params.BRANCH_NAME, url: params.GIT_URL
+                git branch: params.BRANCH_NAME, url: params.GITHUB_URL
             }
         }
         stage('Sonarqube Code Analysis') {
@@ -42,6 +44,12 @@ pipeline {
                     sh "whoami && docker build -t ${params.IMAGE_TAG} -f ${params.DOCKERFILE} ."
                 }
              }
+        }
+
+        stage("Checkout Bitbucket") {
+            steps {
+                git branch: params.BITBUCKET_BRANCH_NAME, url: params.BITBUCKET_URL
+            }
         }
     }
 }

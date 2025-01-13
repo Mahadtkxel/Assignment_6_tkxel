@@ -12,7 +12,7 @@ pipeline {
         string(name: "BITBUCKET_URL", defaultValue: "https://mahadkarim@bitbucket.org/mahad_tkxel/assignment_6_tkxel.git")
         string(name: "TOOL_NAME", defaultValue: "sonarqube")
         string(name: "SONAR_PROJECT", defaultValue: "Assignment_6_tkxel")
-        string(name: "IMAGE_TAG", defaultValue: "Assignment_6_tkxel")
+        string(name: "IMAGE_TAG", defaultValue: "assignment_6_tkxel")
         string(name: "DOCKERFILE", defaultValue: "assign6-react/dev.Dockerfile")
     }
     

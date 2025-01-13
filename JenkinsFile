@@ -51,7 +51,9 @@ pipeline {
 
         stage('Checkout BitBucket Code') {
             steps {
-                git branch: params.BRANCH_NAME, url: params.BITBUCKET_URL
+                dir("bitbucket-repo"){
+                    git branch: params.BITBUCKET_BRANCH_NAME, url: params.BITBUCKET_URL
+                }
             }
         }
 
@@ -61,7 +63,8 @@ pipeline {
             }
             steps {
                 script {
-                    withSonarQubeEnv(params.TOOL_NAME) {
+                    dir("bitbucket-repo"){
+                        withSonarQubeEnv(params.TOOL_NAME) {
                         sh """
                             ${scannerHome}/bin/sonar-scanner \
                                 -Dsonar.projectKey=${params.BITBUCKET_SONAR_PROJECT} \
@@ -69,6 +72,8 @@ pipeline {
                                 -Dsonar.sources=.
                         """
                     }
+                    }
+                    
                 }
             }
         }

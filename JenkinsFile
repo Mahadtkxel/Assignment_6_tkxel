@@ -83,7 +83,10 @@ pipeline {
         stage("Building BitBucket Docker Image") {
             steps {
                 script {
-                    sh "docker build -t ${params.BITBUCKET_IMAGE_TAG} -f ${params.BITBUCKET_DOCKERFILE} ."
+                    dir("bitbucket-repo") {
+                        sh "docker build -t ${params.BITBUCKET_IMAGE_TAG} -f ${params.BITBUCKET_DOCKERFILE} ."
+                    }
+                    
                 }
              }
         }

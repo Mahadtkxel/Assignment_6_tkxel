@@ -11,8 +11,8 @@ pipeline {
         string(name: "GITHUB_URL", defaultValue: "https://github.com/Mahadtkxel/Assignment_6_tkxel.git")
         string(name: "BITBUCKET_URL", defaultValue: "https://mahadkarim@bitbucket.org/mahad_tkxel/assignment_6_tkxel.git")
         string(name: "TOOL_NAME", defaultValue: "sonarqube")
-        string(name: "SONAR_PROJECT", defaultValue: "tkxelassignment6")
-        string(name: "IMAGE_TAG", defaultValue: "tkxelassignment_6")
+        string(name: "SONAR_PROJECT", defaultValue: "Assignment_6_tkxel")
+        string(name: "IMAGE_TAG", defaultValue: "Assignment_6_tkxel")
         string(name: "DOCKERFILE", defaultValue: "assign6-react/dev.Dockerfile")
     }
     
@@ -43,7 +43,7 @@ pipeline {
         stage("Building Docker Image") {
             steps {
                 script {
-                    sh "whoami && docker build -t ${params.IMAGE_TAG} -f ${params.DOCKERFILE} ."
+                    sh "docker build -t ${params.IMAGE_TAG} -f ${params.DOCKERFILE} ./assign6-react"
                 }
              }
         }

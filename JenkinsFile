@@ -1,7 +1,9 @@
 def p 
 
 pipeline {
-    agent docker-agent
+    agent {
+        label docker-agent
+        }
     
     parameters {
         string(name: "BRANCH_NAME", defaultValue: "main")

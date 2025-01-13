@@ -9,17 +9,17 @@ RUN npm install --frozen-lockfile
 COPY . ./
 RUN npm run build
 
-FROM node:18-alpine AS development
-WORKDIR /app
+# FROM node:18-alpine AS development
+# WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm install --frozen-lockfile
+# COPY package.json package-lock.json ./
+# RUN npm install --frozen-lockfile
 
-COPY . ./
+# COPY . ./
 
 
-EXPOSE 3000
-CMD ["npm", "start"]
+# EXPOSE 3000
+# CMD ["npm", "start"]
 
 
 FROM nginx:alpine AS production

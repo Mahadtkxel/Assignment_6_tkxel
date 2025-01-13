@@ -13,7 +13,7 @@ pipeline {
         string(name: "TOOL_NAME", defaultValue: "sonarqube")
         string(name: "SONAR_PROJECT", defaultValue: "Assignment_6_tkxel")
         string(name: "BITBUCKET_SONAR_PROJECT", defaultValue: "assign6_bitbucket")
-        string(name: "IMAGE_TAG", defaultValue: "assign_6_tkxel:react-app")
+        string(name: "IMAGE_TAG", defaultValue: "mahadtkxel/assign_6_tkxel:react-app")
         string(name: "DOCKERFILE", defaultValue: "assign6-react/dev.Dockerfile")
     }
     

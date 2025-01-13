@@ -1,7 +1,7 @@
 def p 
 
 pipeline {
-    agent any
+    agent docker-agent
     
     parameters {
         string(name: "BRANCH_NAME", defaultValue: "main")
@@ -11,7 +11,7 @@ pipeline {
         string(name: "TOOL_NAME", defaultValue: "sonarqube")
         string(name: "SONAR_PROJECT", defaultValue: "tkxelassignment6")
         string(name: "IMAGE_TAG", defaultValue: "tkxelassignment_6")
-        string(name: "DOCKERFILE", defaultValue: "dev.Dockerfile")
+        string(name: "DOCKERFILE", defaultValue: "assign6-react/dev.Dockerfile")
     }
     
     stages {
@@ -46,10 +46,6 @@ pipeline {
              }
         }
 
-        stage("Checkout Bitbucket") {
-            steps {
-                git branch: params.BITBUCKET_BRANCH_NAME, url: params.BITBUCKET_URL
-            }
-        }
+        
     }
 }

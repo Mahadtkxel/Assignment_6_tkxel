@@ -14,7 +14,9 @@ pipeline {
         string(name: "SONAR_PROJECT", defaultValue: "Assignment_6_tkxel")
         string(name: "BITBUCKET_SONAR_PROJECT", defaultValue: "assign6_bitbucket")
         string(name: "IMAGE_TAG", defaultValue: "mahadtkxel/assign_6_tkxel:react-app")
+        string(name: "BITBUCKET_IMAGE_TAG", defaultValue: "mahadtkxel/assign_6_tkxel:python-app")
         string(name: "DOCKERFILE", defaultValue: "assign6-react/dev.Dockerfile")
+        string(name: "BITBUCKET_DOCKERFILE", defaultValue: "dev.Dockerfile")
     }
     
     stages {
@@ -41,7 +43,7 @@ pipeline {
             }
         }
 
-        stage("Building Docker Image") {
+        stage("Building Github Docker Image") {
             steps {
                 script {
                     sh "docker build -t ${params.IMAGE_TAG} -f ${params.DOCKERFILE} ./assign6-react"
@@ -78,6 +80,14 @@ pipeline {
             }
         }
 
+        stage("Building BitBucket Docker Image") {
+            steps {
+                script {
+                    sh "docker build -t ${params.BITBUCKET_IMAGE_TAG} -f ${params.BITBUCKET_DOCKERFILE} ."
+                }
+             }
+        }
+
         stage("push image to dockerhub") {
             steps {
                 
@@ -86,6 +96,7 @@ pipeline {
                             sh """
                                     echo "$DOCKER_PASS" | docker login -u "$DOCK_USER" --password-stdin
                                     docker push ${params.IMAGE_TAG}
+                                    docker push ${params.BITBUCKET_IMAGE_TAG}
                                 """
                         }
                     }

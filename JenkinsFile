@@ -48,6 +48,23 @@ pipeline {
              }
         }
 
+        stage('Checkout Code') {
+            steps {
+                git branch: params.BRANCH_NAME, url: params.BITBUCKET_URL
+            }
+        }
+
         
     }
+
+    post {
+    
+        success {
+            echo 'Build successful!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+    }
+    
 }

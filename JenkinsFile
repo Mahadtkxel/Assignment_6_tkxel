@@ -80,14 +80,15 @@ pipeline {
 
         stage("push image to dockerhub") {
             steps {
-                
+                script{
                     withCredentials([usernamePassword(credentialsId: "docklogin", usernameVariable: "DOCK_USER", passwordVariable: "DOCKER_PASS")]) {
                         sh 
-                            """
+                            '''
                                 echo "$DOCK_PASS | docker login -u "$DOCK_USER" --password-stdin
                                 docker push ${params.IMAGE_TAG}
-                            """
+                            '''
                     }
+                }
                 
             }
         }
